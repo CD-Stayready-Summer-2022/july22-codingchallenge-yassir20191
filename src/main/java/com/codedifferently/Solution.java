@@ -1,5 +1,10 @@
 package com.codedifferently;
 
+import com.sun.source.tree.Tree;
+import com.sun.source.tree.TreeVisitor;
+
+import java.util.*;
+
 public class Solution {
     /**
      * You will be given an integer called number and an array called possibleFamilyMembers
@@ -18,6 +23,30 @@ public class Solution {
      * @return
      */
     public Integer[] numberFamily(Integer number, Integer[] possibleFamilyMembers){
-        return null;
+        Arrays.sort(possibleFamilyMembers);
+        Set<Integer> familyMembers = new TreeSet<Integer>();
+
+        familyMembers.add(number);
+        for(int i =0 ;i < possibleFamilyMembers.length - 1; i++){
+            if(possibleFamilyMembers[i+1]-possibleFamilyMembers[i] == 1){
+               familyMembers.add(possibleFamilyMembers[i]);
+               familyMembers.add(possibleFamilyMembers[i+1]);
+            }
+        }
+        Integer[] arrayMembers = new Integer[familyMembers.size()];
+        int j = 0;
+        for (Integer i: familyMembers) {
+            arrayMembers[j++] = i;
+        }
+
+
+
+        return arrayMembers;
+
+
+
     }
+
+
+
 }
